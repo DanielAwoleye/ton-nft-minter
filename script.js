@@ -7,7 +7,7 @@ let connectedWallet;
 
 connectBtn.addEventListener('click', async () => {
   tonConnect = new TON_CONNECT.TonConnect({
-    manifestUrl: 'https://your-domain.com/tonconnect-manifest.json'
+    manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react/tonconnect-manifest.json'
   });
 
   try {
@@ -33,16 +33,16 @@ mintBtn.addEventListener('click', async () => {
     validUntil: Math.floor(Date.now() / 1000) + 60,
     messages: [
       {
-        address: 'YOUR_CONTRACT_ADDRESS_HERE',
+        address: 'kQC7Oyt8E5I3U6bB5CBRStZAWZMYbs2wSCpgEkMM9-6To-1L', // dummy testnet address
         amount: '1000000000', // 1 TON in nanotons
-        payload: '' // Add payload if your contract needs specific data
+        payload: ''
       }
     ]
   };
 
   try {
     const result = await tonConnect.sendTransaction(tx);
-    statusText.textContent = 'Transaction sent! Waiting for confirmation...';
+    statusText.textContent = 'Transaction sent (simulated)!';
     console.log('TX Result:', result);
   } catch (e) {
     console.error(e);
