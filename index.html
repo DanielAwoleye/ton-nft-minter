@@ -4,20 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oreva NFT Minter - Wallet Connect Test</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; text-align: center; }
-    button { padding: 10px 20px; margin: 20px; font-size: 16px; cursor: pointer; }
-    #status { margin-top: 20px; min-height: 24px; font-weight: bold; }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <!-- Load TonConnect SDK first -->
+  <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.umd.min.js"></script>
 </head>
 <body>
-  <h1>Oreva NFT Minter</h1>
-  <button id="connectBtn">Connect Wallet</button>
-  <div id="status">Not connected</div>
+  <div class="container">
+    <h1>Oreva NFT Minter</h1>
+    <button id="connectBtn">Connect Wallet</button>
+    <div id="status" class="disconnected">Not connected</div>
+  </div>
 
-  <!-- Load SDK first without defer -->
-  <script src="https://cdn.jsdelivr.net/npm/@tonconnect/sdk/dist/tonconnect.umd.min.js"></script>
-  <!-- Then your script -->
   <script src="script.js"></script>
 </body>
 </html>
