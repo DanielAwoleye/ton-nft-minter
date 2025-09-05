@@ -7,16 +7,22 @@ let connectedWallet;
 
 connectBtn.addEventListener('click', async () => {
   tonConnect = new TON_CONNECT.TonConnect({
-    manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react/tonconnect-manifest.json'
+    manifestUrl: 'https://ton-nft-minter-nine.vercel.app/tonconnect-manifest.json'
   });
 
   try {
     await tonConnect.restoreConnection();
-    const connected = await tonConnect.connect();
-    connectedWallet = connected.account.address;
+    if (!tonConnect.connected) {
+      await tonConnect.connect();
+    }
+    connectedWallet = tonConnect.account?.address;
 
-    statusText.textContent = `Connected: ${connectedWallet}`;
-    mintBtn.disabled = false;
+    if (connectedWallet) {
+      statusText.textContent = `Connected: ${connectedWallet}`;
+      mintBtn.disabled = false;
+    } else {
+      statusText.textContent = 'Wallet connection failed';
+    }
   } catch (e) {
     console.error(e);
     statusText.textContent = 'Connection failed';
@@ -33,7 +39,7 @@ mintBtn.addEventListener('click', async () => {
     validUntil: Math.floor(Date.now() / 1000) + 60,
     messages: [
       {
-        address: 'kQC7Oyt8E5I3U6bB5CBRStZAWZMYbs2wSCpgEkMM9-6To-1L', // dummy testnet address
+        address: 'kQC7Oyt8E5I3U6bB5CBRStZAWZMYbs2wSCpgEkMM9-6To-1L', // Dummy testnet contract address
         amount: '1000000000', // 1 TON in nanotons
         payload: ''
       }
@@ -41,9 +47,8 @@ mintBtn.addEventListener('click', async () => {
   };
 
   try {
-    const result = await tonConnect.sendTransaction(tx);
+    await tonConnect.sendTransaction(tx);
     statusText.textContent = 'Transaction sent (simulated)!';
-    console.log('TX Result:', result);
   } catch (e) {
     console.error(e);
     statusText.textContent = 'Minting failed or cancelled.';
