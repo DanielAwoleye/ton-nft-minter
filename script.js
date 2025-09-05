@@ -12,9 +12,11 @@ connectBtn.addEventListener('click', async () => {
 
   try {
     await tonConnect.restoreConnection();
+
     if (!tonConnect.connected) {
       await tonConnect.connect();
     }
+
     connectedWallet = tonConnect.account?.address;
 
     if (connectedWallet) {
