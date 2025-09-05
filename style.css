@@ -87,3 +87,22 @@ button:disabled {
   font-size: 14px;
   color: #aaa;
 }
+
+.instructions {
+  margin-top: 30px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.instructions h3 {
+  margin-top: 0;
+  color: #4a90e2;
+}
+
+.retry-button {
+  background: #FF9500;
+  margin-top: 15px;
+}
