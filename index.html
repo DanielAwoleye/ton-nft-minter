@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oreva NFT Minter - Wallet Connect Test</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Load TonConnect SDK first -->
+  <!-- Load TonConnect SDK with fallback -->
   <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect.umd.min.js"></script>
 </head>
 <body>
@@ -13,6 +13,17 @@
     <h1>Oreva NFT Minter</h1>
     <button id="connectBtn">Connect Wallet</button>
     <div id="status" class="disconnected">Not connected</div>
+    
+    <div class="instructions">
+      <h3>Connection Issues?</h3>
+      <p>If you're having trouble connecting, try these steps:</p>
+      <ol>
+        <li>Make sure you have a TON wallet installed (like TonKeeper)</li>
+        <li>Check that your wallet is unlocked</li>
+        <li>Try refreshing the page</li>
+      </ol>
+      <button id="retryBtn" class="retry-button">Retry Loading SDK</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
