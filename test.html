@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test TON Connect</title>
+</head>
+<body>
+  <h1>Test TON Connect</h1>
+  <button id="connectBtn">Connect Wallet</button>
+  <div id="status">Not connected</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tonconnect/sdk/dist/tonconnect.umd.min.js"></script>
+  <script>
+    const connectBtn = document.getElementById('connectBtn');
+    const statusText = document.getElementById('status');
+
+    connectBtn.addEventListener('click', async () => {
+      try {
+        const tonConnect = new TonConnect({
+          manifestUrl: 'https://ton-nft-minter-nine.vercel.app/tonconnect-manifest.json'
+        });
+
+        await tonConnect.connect();
+
+        const wallet = tonConnect.account?.address;
+
+        if(wallet) {
+          statusText.textContent = 'Connected: ' + wallet;
+        } else {
+          statusText.textContent = 'Failed to connect wallet';
+        }
+      } catch (e) {
+        statusText.textContent = 'Error connecting wallet';
+        console.error(e);
+      }
+    });
+  </script>
+</body>
+</html>
