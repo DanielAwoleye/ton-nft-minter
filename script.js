@@ -4,7 +4,7 @@ const statusText = document.getElementById('status');
 let tonConnect;
 
 connectBtn.addEventListener('click', async () => {
-  tonConnect = new TON_CONNECT.TonConnect({
+  tonConnect = new TonConnect({
     manifestUrl: 'https://ton-nft-minter-nine.vercel.app/tonconnect-manifest.json'
   });
 
